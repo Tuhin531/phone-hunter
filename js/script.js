@@ -32,4 +32,4 @@ document.getElementById('search-button').addEventListener('click', function(){
     loadPhone(searchText);
 })
 
-loadPhone();
+loadPhone('iphone');
