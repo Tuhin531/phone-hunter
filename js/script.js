@@ -7,11 +7,23 @@ const loadPhone = async (searchText) => {
 }
 const displayPhones = phones => {
     const phonesContainer = document.getElementById('phone-container');
-    phonesContainer.textContent= '';
+    phonesContainer.textContent = '';
+    // show only 10 phones
+    phones = phones.slice(0, 10);
+    // Not found operation
+   const  noPhone = document.getElementById('no-found-massage');
+    if(phones.length === 0){
+        noPhone.classList.remove('d-none');
+    }
+    else{
+        noPhone.classList.add('d-none');
+    }
+
+    // phone found function
     phones.forEach(phone => {
         const phoneDiv = document.createElement('div');
         phoneDiv.classList.add('col');
-        phoneDiv.innerHTML =`
+        phoneDiv.innerHTML = `
         
         <div class="card">
                 <img src="${phone.image}" class="card-img-top w-50 mx-auto m-4" alt="...">
@@ -22,14 +34,14 @@ const displayPhones = phones => {
          </div>
         `;
 
-phonesContainer.appendChild(phoneDiv);
+        phonesContainer.appendChild(phoneDiv);
 
     })
 }
-document.getElementById('search-button').addEventListener('click', function(){
+document.getElementById('search-button').addEventListener('click', function () {
     const searchFiled = document.getElementById('search-field');
     const searchText = searchFiled.value;
     loadPhone(searchText);
 })
 
-loadPhone('iphone');
+loadPhone('');
